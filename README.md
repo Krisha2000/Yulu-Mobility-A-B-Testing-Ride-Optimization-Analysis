@@ -1,6 +1,6 @@
 # Yulu Bike Sharing Demand Analysis
 
-
+![Yulu Bike](https://placehold.co/800x200/EBF4FF/333333?text=Yulu+Demand+Analysis)
 
 ### A comprehensive analysis of the factors influencing shared electric cycle demand, leveraging statistical testing and machine learning to drive business strategy.
 
@@ -66,13 +66,21 @@ The project was structured as a multi-stage data investigation:
 
 ### Key Findings & Insights
 
-The analysis yielded several statistically significant insights:
+The analysis yielded several statistically significant insights across different dimensions:
 
-- **Weather is a Major Driver:** Temperature has a moderate positive correlation (**r = +0.40**) with demand, while humidity has a moderate negative correlation (**r = -0.32**).
-- **Clear User Personas Identified:** The K-Means clustering revealed three distinct user groups:
-    - **Cluster 2 ('High-Demand Midday'):** Averaging **492 rentals/hour**, this group represents peak demand on weekday afternoons in clear weather.
-    - **Cluster 0 ('Weekday Warriors'):** The classic commuters, averaging **195 rentals/hour** with sharp peaks at 8 AM and 5-6 PM.
-    - **Cluster 1 ('Low-Demand Off-Peak'):** Averaging just **46 rentals/hour**, concentrated in the early mornings with high humidity.
+- **Demand Patterns:**
+    - **Weekday vs. Weekend:** Weekdays show a distinct bimodal demand distribution with sharp peaks at **8 AM and 5-6 PM**, indicative of commuter traffic. Weekends show a single, broader peak in the early afternoon, suggesting leisure-based use.
+    - **Year-over-Year Growth:** The business showed strong growth, with a **65% increase** in average hourly rentals from 2011 to 2012.
+
+- **Environmental Factors:**
+    - **Seasonal Influence:** Demand is highest in the **Fall** and lowest in the **Spring**, with weather being a key contributing factor.
+    - **Weather is a Major Driver:** Clear weather conditions see the highest ridership. Temperature has a moderate positive correlation (**r = +0.40**) with demand, while humidity has a moderate negative correlation (**r = -0.32**).
+
+- **Customer Segmentation (from K-Means Clustering):**
+    - **Clear User Personas Identified:** The analysis successfully segmented users into three distinct behavioral groups:
+        - **Cluster 2 ('High-Demand Midday'):** Averaging **492 rentals/hour**, this group represents peak demand on weekday afternoons in clear weather.
+        - **Cluster 0 ('Weekday Warriors'):** The classic commuters, averaging **195 rentals/hour** with sharp peaks at 8 AM and 5-6 PM.
+        - **Cluster 1 ('Low-Demand Off-Peak'):** Averaging just **46 rentals/hour**, concentrated in the early mornings with high humidity.
 
 ---
 
@@ -99,3 +107,6 @@ This analysis was conducted in Python, utilizing the following core data science
 - **SciPy:** For conducting the statistical tests.
 
 ---
+
+
+    
