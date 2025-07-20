@@ -1,80 +1,101 @@
-# Yulu – Hypothesis Testing for Micro-Mobility Demand
-
-## Overview
-
-This project explores the demand patterns for Yulu, a leading micro-mobility service provider in India offering shared electric cycles. Yulu has been facing challenges with declining revenue and partnered with a consulting team to analyze key factors influencing the demand for its services.
-
-The goal is to identify and validate which variables significantly impact the rental demand for electric cycles through structured hypothesis testing and statistical analysis.
-
-## Objective
-
-- To determine which factors (e.g., season, weather, working day) significantly affect the number of Yulu electric cycles rented.
-- To conduct hypothesis tests and draw actionable insights for business improvement.
-
-## Dataset Description
-
-The dataset includes the following features:
-
-| Column        | Description                                           |
-|---------------|-------------------------------------------------------|
-| datetime      | Date and time of the record                          |
-| season        | Season (1: spring, 2: summer, 3: fall, 4: winter)     |
-| holiday       | 1 if it is a holiday, 0 otherwise                     |
-| workingday    | 1 if it is a working day, 0 otherwise                 |
-| weather       | Weather conditions categorized in multiple levels    |
-| temp          | Temperature in Celsius                                |
-| atemp         | Apparent (feels-like) temperature in Celsius          |
-| humidity      | Humidity percentage                                   |
-| windspeed     | Wind speed                                            |
-| casual        | Number of casual users                                |
-| registered    | Number of registered users                            |
-| count         | Total number of users (casual + registered)           |
-
-## Key Questions Addressed
-
-1. Does the number of electric cycles rented vary between working and non-working days?
-2. Is there a significant difference in rental count across different seasons?
-3. Does the weather condition influence the number of cycles rented?
-4. Is weather condition dependent on the season?
-
-## Statistical Methods Used
-
-- **Bi-Variate Analysis**
-- **Two-sample t-test**
-- **ANOVA (Analysis of Variance)**
-- **Chi-Square Test of Independence**
-- **Data Visualization for Statistical Assumptions**
-    - Histograms
-    - Boxplots
-    - Q-Q Plots
-- **Assumption Testing**
-    - Shapiro-Wilk test (Normality)
-    - Levene’s test (Homogeneity of variances)
-
-## Steps Followed
-
-1. **Exploratory Data Analysis (EDA)** to understand data structure and feature relationships.
-2. **Formulating Hypotheses**:
-   - Null Hypothesis (H₀)
-   - Alternate Hypothesis (H₁)
-3. **Test Assumptions** for each statistical test.
-4. **Run Statistical Tests** to validate hypotheses.
-5. **Draw Inferences** and derive insights relevant to Yulu’s business problem.
-
-## Insights & Outcome
-
-- Identified key features that significantly impact rental demand.
-- Provided data-driven recommendations on how environmental and temporal conditions affect usage.
-- Results can help improve pricing, marketing, and inventory planning strategies.
-
-## Tools & Technologies
-
-- Python (pandas, numpy, scipy, statsmodels)
-- Data Visualization: matplotlib, seaborn
-- Jupyter Notebook
-
-## Conclusion
-
-This project demonstrates how hypothesis testing and structured statistical analysis can help uncover insights in a real-world business scenario. The findings are intended to support strategic decisions at Yulu for improving service efficiency, customer experience, and revenue growth.
+# Yulu Bike Sharing Demand Analysis
 
 
+
+### A comprehensive analysis of the factors influencing shared electric cycle demand, leveraging statistical testing and machine learning to drive business strategy.
+
+---
+
+### Table of Contents
+1. [Project Overview](#project-overview)
+2. [Business Problem](#business-problem)
+3. [Dataset](#dataset)
+4. [Methodology](#methodology)
+5. [Key Findings & Insights](#key-findings--insights)
+6. [Actionable Recommendations](#actionable-recommendations)
+7. [Tools and Libraries](#tools-and-libraries)
+
+
+---
+
+### Project Overview
+
+This project conducts an in-depth analysis of the Yulu bike-sharing dataset to understand the variables affecting the demand for shared electric cycles. The analysis moves from foundational data exploration and rigorous hypothesis testing to advanced customer segmentation using machine learning. The final output is a set of data-driven, actionable recommendations designed to help Yulu optimize its operations, marketing, and pricing strategies to address a recent decline in revenue.
+
+---
+
+### Business Problem
+
+Yulu, a leading micro-mobility service provider in India, has experienced a significant dip in revenue. They need to understand the key factors that influence the demand for their shared electric cycles to make informed decisions that will boost ridership and stabilize revenue. This analysis aims to answer the core question: **"What are the factors affecting the demand for shared electric cycles in the Indian market?"**
+
+---
+
+### Dataset
+
+The analysis is based on a dataset containing hourly rental data for Yulu bikes. Key attributes include:
+- `datetime`: Timestamp of the rental
+- `season`: Season of the year (Spring, Summer, Fall, Winter)
+- `holiday`: Whether the day is a holiday
+- `workingday`: Whether the day is a workday
+- `weather`: Weather conditions (Clear, Mist, Light Rain, etc.)
+- `temp`: Temperature in Celsius
+- `atemp`: "Feels like" temperature in Celsius
+- `humidity`: Relative humidity
+- `windspeed`: Wind speed
+- `count`: Total number of rentals (target variable)
+
+---
+
+### Methodology
+
+The project was structured as a multi-stage data investigation:
+
+1.  **Data Cleaning & Feature Engineering:** The dataset was cleaned, and the `datetime` column was decomposed into more useful features like `hour`, `day_of_week`, `month`, and `year`.
+
+2.  **Exploratory Data Analysis (EDA):** Visualizations were used to uncover initial patterns, such as the bimodal demand peaks on weekdays (commuter traffic) and the strong influence of weather and season on ridership.
+
+3.  **Hypothesis Testing:** A suite of statistical tests was conducted to validate the findings from EDA with a significance level (alpha) of 0.05.
+    - **ANOVA:** To test for significant differences in mean rentals across multiple groups (seasons, weather).
+    - **Mann-Whitney U Test:** Used as a non-parametric alternative to the T-test to compare rental distributions on working vs. non-working days, as the data was not normally distributed.
+    - **Pearson Correlation:** To quantify the strength and direction of the linear relationship between continuous variables (`temperature`, `humidity`) and rental counts.
+    - **Chi-Square Test:** To test for a significant association between two categorical variables (season and weather).
+
+4.  **Machine Learning - Clustering:** To move beyond *what* drives demand to *who* is driving it, **K-Means Clustering** was used to segment user sessions into distinct behavioral groups. The optimal number of clusters was determined using the silhouette score.
+
+---
+
+### Key Findings & Insights
+
+The analysis yielded several statistically significant insights:
+
+- **Weather is a Major Driver:** Temperature has a moderate positive correlation (**r = +0.40**) with demand, while humidity has a moderate negative correlation (**r = -0.32**).
+- **Clear User Personas Identified:** The K-Means clustering revealed three distinct user groups:
+    - **Cluster 2 ('High-Demand Midday'):** Averaging **492 rentals/hour**, this group represents peak demand on weekday afternoons in clear weather.
+    - **Cluster 0 ('Weekday Warriors'):** The classic commuters, averaging **195 rentals/hour** with sharp peaks at 8 AM and 5-6 PM.
+    - **Cluster 1 ('Low-Demand Off-Peak'):** Averaging just **46 rentals/hour**, concentrated in the early mornings with high humidity.
+
+---
+
+### Actionable Recommendations
+
+Based on the findings, the following targeted strategies were proposed:
+
+| Recommendation              | Target Cluster           | Proposed Action                                                                                             |
+| --------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| **Dynamic Pricing** | High-Demand Midday       | Implement a **+15% price surge** during peak hours to maximize revenue from high-intent users.              |
+| **Loyalty Program** | Weekday Warriors         | Launch a "Commuter Pass" (monthly subscription) to lock in predictable revenue and increase user retention. |
+| **Demand Stimulation** | Low-Demand Off-Peak      | Offer targeted **-20% discounts** during early morning hours to improve bike utilization and attract new users. |
+| **Inventory Management** | All Clusters             | Proactively reallocate bikes to match the demand patterns of each cluster throughout the day and week.      |
+
+---
+
+### Tools and Libraries
+
+This analysis was conducted in Python, utilizing the following core data science libraries:
+- **Pandas:** For data manipulation and analysis.
+- **NumPy:** For numerical operations.
+- **Matplotlib & Seaborn:** For data visualization.
+- **Scikit-learn:** For implementing the K-Means clustering algorithm and data preprocessing (StandardScaler).
+- **SciPy:** For conducting the statistical tests.
+
+---
