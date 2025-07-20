@@ -1,6 +1,6 @@
 # Yulu Bike Sharing Demand Analysis
 
-![Yulu Bike](https://placehold.co/800x200/EBF4FF/333333?text=Yulu+Demand+Analysis)
+![Yulu Bike](flowchart (1).jpg)
 
 ### A comprehensive analysis of the factors influencing shared electric cycle demand, leveraging statistical testing and machine learning to drive business strategy.
 
